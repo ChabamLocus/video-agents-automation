@@ -1,7 +1,7 @@
 requests
 google-api-python-client
 google-auth-oauthlib
+moviepy
 gTTS
+imageio[ffmpeg]>=0.4.8
 imageio-ffmpeg>=0.4.8
-moviepy==1.0.5
-imageio-ffmpeg==0.4.8
