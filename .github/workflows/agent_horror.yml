@@ -1,0 +1,35 @@
+name: Agent Horror - True Crime & Creepy Stories
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'  # every day at 3am UTC
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Horror Agent (generate -> tts -> make video -> upload)
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: |
+          python agents/agent_horror/generate.py --config agents/agent_horror/config.json
+          python agents/agent_horror/tts.py --config agents/agent_horror/config.json
+          python agents/agent_horror/make_video.py --config agents/agent_horror/config.json
+          python agents/agent_horror/upload_youtube.py --config agents/agent_horror/config.json
