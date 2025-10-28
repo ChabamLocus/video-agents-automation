@@ -21,7 +21,10 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y ffmpeg
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          # Ensure moviepy + ffmpeg helper are installed explicitly (fixes ModuleNotFoundError)
+          pip install "moviepy>=1.0.3" "imageio-ffmpeg>=0.4.8"
+          # Install any remaining requirements (if requirements.txt exists)
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Run Horror Agent (generate -> tts -> make video -> upload)
         env:
