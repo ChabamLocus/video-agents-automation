@@ -3,3 +3,6 @@ google-api-python-client
 google-auth-oauthlib
 moviepy
 gTTS
+
+imageio[ffmpeg]>=0.4.7
+imageio-ffmpeg>=0.4.7
