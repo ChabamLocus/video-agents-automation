@@ -58,14 +58,14 @@ def main():
     
     # Pipeline completo
     steps = [
-        (f"python generate.py --config {args.config}", "Generación de script"),
-        (f"python tts.py --config {args.config}", "Generación de audio"),
-        (f"python make_video.py --config {args.config}", "Creación de video")
+        (f"python agents/agent_horror/generate.py --config {args.config}", "Generación de script"),
+        (f"python agents/agent_horror/tts.py --config {args.config}", "Generación de audio"),
+        (f"python agents/agent_horror/make_video.py --config {args.config}", "Creación de video")
     ]
     
     # Agregar subida si no se salta
     if not args.skip_upload:
-        steps.append((f"python upload_youtube.py --config {args.config}", "Subida a YouTube"))
+        steps.append((f"python agents/agent_horror/upload_youtube.py --config {args.config}", "Subida a YouTube"))
     
     # Ejecutar cada paso
     for command, description in steps:
