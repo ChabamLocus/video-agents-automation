@@ -28,7 +28,8 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          pip install -r requirements.txt
+          chmod +x install_deps.sh
+          ./install_deps.sh
 
       - name: Configure YouTube credentials
         env:
