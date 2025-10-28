@@ -2,8 +2,19 @@
   "agent_name": "agent_horror",
   "niche": "true crime and horror stories",
   "title_template": "Creepy Tale: {topic}",
-  "description_template": "An AI-generated true crime and horror short about {topic}. Viewer discretion is advised.",
+  "description_template": "An AI-generated true crime and horror short about {topic}. Viewer discretion is advised. Generated on {date}.",
   "language": "en",
   "tts_voice": "default",
-  "output_dir": "outputs"
+  "output_dir": "outputs",
+  "video_settings": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 24,
+    "background_color": [0, 0, 0]
+  },
+  "youtube_settings": {
+    "category_id": "24",
+    "privacy_status": "private",
+    "tags": ["horror", "crime", "story"]
+  }
 }
