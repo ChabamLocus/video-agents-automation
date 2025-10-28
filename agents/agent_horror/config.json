@@ -1,0 +1,9 @@
+{
+  "agent_name": "agent_horror",
+  "niche": "true crime and horror stories",
+  "title_template": "Creepy Tale: {topic}",
+  "description_template": "An AI-generated true crime and horror short about {topic}. Viewer discretion is advised.",
+  "language": "en",
+  "tts_voice": "default",
+  "output_dir": "outputs"
+}
