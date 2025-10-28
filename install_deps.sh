@@ -14,8 +14,12 @@ pip install google-api-python-client==2.100.0
 pip install google-auth-oauthlib==1.1.0
 pip install "imageio[ffmpeg]==2.31.0"
 pip install imageio-ffmpeg==0.4.8
+pip install packaging>=21.0
 
 echo "Verificando instalación de moviepy..."
 python -c "import moviepy.editor; print('✅ MoviePy instalado correctamente')"
+
+echo "Verificando instalación de Google API..."
+python -c "from googleapiclient.discovery import build; print('✅ Google API instalado correctamente')"
 
 echo "Todas las dependencias instaladas!"
