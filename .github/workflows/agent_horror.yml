@@ -28,11 +28,7 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          else
-            pip install moviepy imageio-ffmpeg
-          fi
+          pip install -r requirements.txt
 
       - name: Configure YouTube credentials
         env:
