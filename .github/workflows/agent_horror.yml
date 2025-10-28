@@ -34,6 +34,25 @@ jobs:
             pip install moviepy imageio-ffmpeg
           fi
 
-      - name: Run agent horror script
-        # Replace this command if your workflow used a different command previously.
-        run: python agents/agent_horror/make_video.py
+      - name: Configure YouTube credentials
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: |
+          echo "YouTube credentials configured"
+
+      - name: Run complete pipeline
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: |
+          python agents/agent_horror/run_pipeline.py --config agents/agent_horror/config.json
+
+      - name: Upload generated files as artifacts
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: horror-video-files
+          path: outputs/
